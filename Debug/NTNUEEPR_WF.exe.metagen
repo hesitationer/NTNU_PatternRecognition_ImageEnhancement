@@ -1,0 +1,69 @@
+  NTNUEEPR_WPF.ImageLayer.resources - Embedded, ContainedInManifestFile, 
+  NTNUEEPR_WPF.MyForm.resources - Embedded, ContainedInManifestFile, 
+ImageRuntimeVersion: v4.0.30319
+Assembly NTNUEEPR_WF, Version=0.0.*, Culture=Invariant Language (Invariant Country): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a: 
+	hash=None, flags=None
+Assembly System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Class NTNUEEPR_WPF.MyImageData: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    System.String name : Public
+    MyImage<unsigned char>* data : Public
+  Methods:
+    op_Equality(String* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig, SpecialName
+    op_Equality(MyImageData* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig, SpecialName
+    GetWidth(): PrivateScope, Public, HideBySig
+    GetHeight(): PrivateScope, Public, HideBySig
+    GetPixels(COLOR): PrivateScope, Public, HideBySig
+    GetPixelsCopy(COLOR): PrivateScope, Public, HideBySig
+    DeletePixels(Byte**, UInt32, UInt32): PrivateScope, Public, Static, HideBySig
+Class NTNUEEPR_WPF.FilterToLayer: AutoLayout, AnsiClass, Class, Public, Abstract, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Fields:
+    Boolean isEnable : Public
+  Methods:
+    Execute(MyImageData): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    Name(): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class NTNUEEPR_WPF.ImageLayer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.ListViewItem
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Fields:
+    System.Windows.Forms.CheckBox cbox_visable : Public
+    System.Windows.Forms.TextBox tbox_layername : Public
+  Methods:
+    Setup(): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class NTNUEEPR_WPF.LayerHistogramEqualization: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :NTNUEEPR_WPF.FilterToLayer
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    Execute(MyImageData): PrivateScope, Public, Virtual, HideBySig
+Struct MyFilterHistogramEqualization<unsigned char>: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+Class NTNUEEPR_WPF.LayerMedianFilter: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :NTNUEEPR_WPF.FilterToLayer
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    Execute(MyImageData): PrivateScope, Public, Virtual, HideBySig
+Struct MedianFilter<unsigned char>: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+Class NTNUEEPR_WPF.MyForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

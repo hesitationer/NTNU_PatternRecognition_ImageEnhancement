@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{363e1e32-4185-4bfa-acc4-f39263c06651}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI">
+      <UniqueIdentifier>{f1c3a999-3954-4116-af8a-3fa8fad4a395}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UI">
+      <UniqueIdentifier>{efa1416d-d019-493c-a87f-5f4e18241cec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System">
+      <UniqueIdentifier>{cdec661e-1a9d-47ec-b70b-e9625ea1bb92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\System">
+      <UniqueIdentifier>{ece91833-6998-4e2e-a3e8-674ebe3a0aed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core">
+      <UniqueIdentifier>{007ffb2b-fe11-4dac-aabd-e1e96e135cf8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{aad8baad-65e2-4a16-8ef5-daf4eb73a6a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UICoreAdapter">
+      <UniqueIdentifier>{8c5ea894-ce6f-4ea2-a3fa-34066264122b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UICoreAdapter">
+      <UniqueIdentifier>{b305418e-2968-486f-bebf-d68bf66dd2fd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="MyForm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyImageData.cpp">
+      <Filter>Source Files\UICoreAdapter</Filter>
+    </ClCompile>
+    <ClCompile Include="MyImage.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyFilter.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="FilterToLayer.cpp">
+      <Filter>Source Files\UICoreAdapter</Filter>
+    </ClCompile>
+    <ClCompile Include="MyFilterHistogramEqualization.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LayerHistogramEqualization.cpp">
+      <Filter>Source Files\UICoreAdapter</Filter>
+    </ClCompile>
+    <ClCompile Include="MedianFilter.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="LayerMedianFilter.cpp">
+      <Filter>Source Files\UICoreAdapter</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MyForm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyImageData.h">
+      <Filter>Header Files\UICoreAdapter</Filter>
+    </ClInclude>
+    <ClInclude Include="MyImage.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageLayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyFilter.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="FilterToLayer.h">
+      <Filter>Header Files\UICoreAdapter</Filter>
+    </ClInclude>
+    <ClInclude Include="MyFilterHistogramEqualization.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="LayerHistogramEqualization.h">
+      <Filter>Header Files\UICoreAdapter</Filter>
+    </ClInclude>
+    <ClInclude Include="MedianFilter.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="LayerMedianFilter.h">
+      <Filter>Header Files\UICoreAdapter</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="IniImg.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
