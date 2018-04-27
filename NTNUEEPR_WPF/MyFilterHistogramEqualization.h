@@ -36,6 +36,9 @@ public:
 
 		img->DeletePixels(ptr_pixels_gray,width,height);
 
+		delete [] histogram;
+		delete[] cdf;
+
 		//return
 		return resultImg;
 	}

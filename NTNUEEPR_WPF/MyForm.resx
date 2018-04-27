@@ -117,27 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="pbox_display.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        /9j/4AAQSkZJRgABAQEAAAAAAAD/2wBDAAkGBw8PDw8PDw8PDQ8PDw8PDw0NDw8PDQ0PFRUWFhURFRUY
-        HSggGBolGxUVITEhJSkrLi4uFx8zODMtNygtLiv/2wBDAQoKCgUFBQ4FBQ4rGRMZKysrKysrKysrKysr
-        KysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKyv/wAARCADhAOEDASIAAhEBAxEB/8QA
-        FgABAQEAAAAAAAAAAAAAAAAAAAEH/8QAFhABAQEAAAAAAAAAAAAAAAAAAAER/8QAFQEBAQAAAAAAAAAA
-        AAAAAAAAAAH/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDQAWoiAUAWIBgqQAWoAFUE
-        MAAIUCgACoAFWAhgoIEWggFAUAQAAAAAAAAAAAAAAAAKAaAAAAAAAAABgoCKiggAKgAqQAKAAqAAAEKQ
-        AABbEXUAVABUAICghQBcEAAAAAAARQAKAAKCJFAAAKAAAAAAigAFAoAAoCKgAFAWIAAALUABUAAAIUAA
-        AVAAWIAAALUAAoBooCAoIAALEAAgAtQAKoIYAECFAAAoqAAsBDAABaCAUAXQEAAAAAAAAAAAAAAAACgA
-        AAAAAAAAAAoCLUXQQoAsQAVIALUVAKqAAAEKAAAKioAsQAoAEWoAFAFEwABaCUAAVABUgAUABQRFAAhQ
-        KAAKgAVQQFBAhQKAChgCKgAAAAAIoKgUCqgACQFgAAUBUAAAAEBVQACgAAAKCFAAWIAAALUACqCAABFo
-        IAAKgALAQAAFoIUKCiaAAUAAAAAAAAAAADAAAAAAoAAABgAAFAAAAVAAKAsQAVIALUACqgAABCgAACoA
-        CxACqgBFqABQBdEAAWggFAFiACpABagAVQQAAIUCgACoAFWAgVQQIUACgoAItAEUAIlAAgAtSABVACoA
-        EUASFAFQAKsAEqwARQBIVQEAB//Z
-</value>
-  </data>
   <metadata name="tstrip_layer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>136, 17</value>
+    <value>251, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btn_addlayer.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -198,10 +181,13 @@
         TgDQASA1MVpwzwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <metadata name="lview_layer.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
+  </metadata>
+  <metadata name="process1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>366, 17</value>
+  </metadata>
+  <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </metadata>
 </root>

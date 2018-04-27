@@ -39,6 +39,9 @@ Class NTNUEEPR_WPF.FilterToLayer: AutoLayout, AnsiClass, Class, Public, Abstract
     Execute(MyImageData): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
     Name(): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class NTNUEEPR_WPF.HistogramForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class NTNUEEPR_WPF.ImageLayer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.ListViewItem
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -50,12 +53,33 @@ Class NTNUEEPR_WPF.ImageLayer: AutoLayout, AnsiClass, Class, Public, BeforeField
   Methods:
     Setup(): PrivateScope, Public, HideBySig
     Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class NTNUEEPR_WPF.LayerColorAdjustmentFilter: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :NTNUEEPR_WPF.FilterToLayer
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    Execute(MyImageData): PrivateScope, Public, Virtual, HideBySig
+Struct ColorAdjustmentFilter<unsigned char>: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+Class NTNUEEPR_WPF.LayerContrastBalance: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :NTNUEEPR_WPF.FilterToLayer
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    Execute(MyImageData): PrivateScope, Public, Virtual, HideBySig
+Struct ContractBalanceFilter<unsigned char>: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
 Class NTNUEEPR_WPF.LayerHistogramEqualization: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :NTNUEEPR_WPF.FilterToLayer
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
     Execute(MyImageData): PrivateScope, Public, Virtual, HideBySig
 Struct MyFilterHistogramEqualization<unsigned char>: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+Class NTNUEEPR_WPF.LayerInverse: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :NTNUEEPR_WPF.FilterToLayer
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    Execute(MyImageData): PrivateScope, Public, Virtual, HideBySig
+Struct InverseFilter<unsigned char>: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
   :System.ValueType
 Class NTNUEEPR_WPF.LayerMedianFilter: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :NTNUEEPR_WPF.FilterToLayer

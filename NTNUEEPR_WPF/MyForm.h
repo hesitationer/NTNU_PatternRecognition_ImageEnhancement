@@ -5,6 +5,9 @@
 #include "FilterToLayer.h"
 #include "LayerHistogramEqualization.h"
 #include "LayerMedianFilter.h"
+#include "LayerColorAbjustment.h"
+#include "LayerInverse.h"
+#include "LayerContractBalance.h"
 
 namespace NTNUEEPR_WPF {
 
@@ -57,11 +60,11 @@ namespace NTNUEEPR_WPF {
 
 
 	private: System::Windows::Forms::PictureBox^  pbox_display;
-	private: System::Windows::Forms::ToolStrip^  tstrip_layer;
-	private: System::Windows::Forms::ToolStripSplitButton^  btn_addlayer;
-	private: System::Windows::Forms::ToolStripButton^  btn_removeLayer;
-	private: System::Windows::Forms::ToolStripButton^  btn_pushlayer;
-	private: System::Windows::Forms::ToolStripButton^  btn_downlayer;
+
+
+
+
+
 
 	private: System::Windows::Forms::SplitContainer^  split_compare;
 	private: System::Windows::Forms::PictureBox^  pictureBox1;
@@ -84,13 +87,30 @@ namespace NTNUEEPR_WPF {
 		List<FilterToLayer^ >^ myLayersTypes = gcnew List<FilterToLayer^>();
 		List<FilterToLayer^ >^ myFactLayers = gcnew List<FilterToLayer^>();
 
+		int index_selected_layer = -1;
+
+	private: System::Windows::Forms::SplitContainer^  spC_rightMenu;
+	protected:
+	private: System::Windows::Forms::PictureBox^  pbox_colorhistogram;
+	private: System::Windows::Forms::ToolStrip^  tstrip_layer;
+	private: System::Windows::Forms::ToolStripSplitButton^  btn_addlayer;
+	private: System::Windows::Forms::ToolStripButton^  btn_removeLayer;
+	private: System::Windows::Forms::ToolStripButton^  btn_pushlayer;
+	private: System::Windows::Forms::ToolStripButton^  btn_downlayer;
+	private: System::Windows::Forms::ListView^  lview_layer;
+	private: System::Windows::Forms::ColumnHeader^  col_enable;
+	private: System::Windows::Forms::ColumnHeader^  col_name;
+	private: System::Diagnostics::Process^  process1;
+	private: System::Windows::Forms::Button^  btn_showhistogram;
+
+
 #pragma region LayerItems
 		
 #pragma endregion
 
-	private: System::Windows::Forms::ListView^  lview_layer;
-	private: System::Windows::Forms::ColumnHeader^  col_enable;
-	private: System::Windows::Forms::ColumnHeader^  col_name;
+
+
+
 	protected:
 
 	protected:
@@ -117,6 +137,9 @@ namespace NTNUEEPR_WPF {
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
 			this->pbox_display = (gcnew System::Windows::Forms::PictureBox());
+			this->spC_rightMenu = (gcnew System::Windows::Forms::SplitContainer());
+			this->btn_showhistogram = (gcnew System::Windows::Forms::Button());
+			this->pbox_colorhistogram = (gcnew System::Windows::Forms::PictureBox());
 			this->tstrip_layer = (gcnew System::Windows::Forms::ToolStrip());
 			this->btn_addlayer = (gcnew System::Windows::Forms::ToolStripSplitButton());
 			this->btn_removeLayer = (gcnew System::Windows::Forms::ToolStripButton());
@@ -131,6 +154,7 @@ namespace NTNUEEPR_WPF {
 			this->tsitem_loadimgbyfolder = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->msitem_compareimage = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->msitem_view = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->process1 = (gcnew System::Diagnostics::Process());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->spC_main))->BeginInit();
 			this->spC_main->Panel1->SuspendLayout();
 			this->spC_main->Panel2->SuspendLayout();
@@ -142,6 +166,11 @@ namespace NTNUEEPR_WPF {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbox_display))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->spC_rightMenu))->BeginInit();
+			this->spC_rightMenu->Panel1->SuspendLayout();
+			this->spC_rightMenu->Panel2->SuspendLayout();
+			this->spC_rightMenu->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbox_colorhistogram))->BeginInit();
 			this->tstrip_layer->SuspendLayout();
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
@@ -162,8 +191,7 @@ namespace NTNUEEPR_WPF {
 			// 
 			// spC_main.Panel2
 			// 
-			this->spC_main->Panel2->Controls->Add(this->tstrip_layer);
-			this->spC_main->Panel2->Controls->Add(this->lview_layer);
+			this->spC_main->Panel2->Controls->Add(this->spC_rightMenu);
 			this->spC_main->Size = System::Drawing::Size(499, 365);
 			this->spC_main->SplitterDistance = 299;
 			this->spC_main->TabIndex = 0;
@@ -203,13 +231,55 @@ namespace NTNUEEPR_WPF {
 			// 
 			// pbox_display
 			// 
-			this->pbox_display->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pbox_display.Image")));
 			this->pbox_display->ImageLocation = L"";
 			this->pbox_display->Location = System::Drawing::Point(0, 0);
 			this->pbox_display->Name = L"pbox_display";
-			this->pbox_display->Size = System::Drawing::Size(9999, 9999);
+			this->pbox_display->Size = System::Drawing::Size(0, 0);
+			this->pbox_display->SizeMode = System::Windows::Forms::PictureBoxSizeMode::AutoSize;
 			this->pbox_display->TabIndex = 0;
 			this->pbox_display->TabStop = false;
+			// 
+			// spC_rightMenu
+			// 
+			this->spC_rightMenu->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->spC_rightMenu->Location = System::Drawing::Point(0, 0);
+			this->spC_rightMenu->Name = L"spC_rightMenu";
+			this->spC_rightMenu->Orientation = System::Windows::Forms::Orientation::Horizontal;
+			// 
+			// spC_rightMenu.Panel1
+			// 
+			this->spC_rightMenu->Panel1->Controls->Add(this->btn_showhistogram);
+			this->spC_rightMenu->Panel1->Controls->Add(this->pbox_colorhistogram);
+			// 
+			// spC_rightMenu.Panel2
+			// 
+			this->spC_rightMenu->Panel2->Controls->Add(this->tstrip_layer);
+			this->spC_rightMenu->Panel2->Controls->Add(this->lview_layer);
+			this->spC_rightMenu->Size = System::Drawing::Size(196, 365);
+			this->spC_rightMenu->SplitterDistance = 69;
+			this->spC_rightMenu->TabIndex = 2;
+			// 
+			// btn_showhistogram
+			// 
+			this->btn_showhistogram->Dock = System::Windows::Forms::DockStyle::Top;
+			this->btn_showhistogram->Location = System::Drawing::Point(0, 0);
+			this->btn_showhistogram->Name = L"btn_showhistogram";
+			this->btn_showhistogram->Size = System::Drawing::Size(196, 20);
+			this->btn_showhistogram->TabIndex = 1;
+			this->btn_showhistogram->Text = L"show";
+			this->btn_showhistogram->UseVisualStyleBackColor = true;
+			// 
+			// pbox_colorhistogram
+			// 
+			this->pbox_colorhistogram->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->pbox_colorhistogram->Location = System::Drawing::Point(0, 23);
+			this->pbox_colorhistogram->Margin = System::Windows::Forms::Padding(0);
+			this->pbox_colorhistogram->Name = L"pbox_colorhistogram";
+			this->pbox_colorhistogram->Size = System::Drawing::Size(196, 47);
+			this->pbox_colorhistogram->TabIndex = 0;
+			this->pbox_colorhistogram->TabStop = false;
 			// 
 			// tstrip_layer
 			// 
@@ -220,9 +290,8 @@ namespace NTNUEEPR_WPF {
 			this->tstrip_layer->Location = System::Drawing::Point(0, 0);
 			this->tstrip_layer->Name = L"tstrip_layer";
 			this->tstrip_layer->Size = System::Drawing::Size(196, 25);
-			this->tstrip_layer->TabIndex = 1;
+			this->tstrip_layer->TabIndex = 3;
 			this->tstrip_layer->Text = L"toolStrip1";
-			this->tstrip_layer->ItemClicked += gcnew System::Windows::Forms::ToolStripItemClickedEventHandler(this, &MyForm::tstrip_layer_ItemClicked);
 			// 
 			// btn_addlayer
 			// 
@@ -275,14 +344,14 @@ namespace NTNUEEPR_WPF {
 			this->lview_layer->CheckBoxes = true;
 			this->lview_layer->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(2) { this->col_enable, this->col_name });
 			this->lview_layer->FullRowSelect = true;
-			this->lview_layer->Location = System::Drawing::Point(3, 30);
+			this->lview_layer->Location = System::Drawing::Point(0, 28);
 			this->lview_layer->Name = L"lview_layer";
-			this->lview_layer->Size = System::Drawing::Size(182, 335);
-			this->lview_layer->TabIndex = 0;
+			this->lview_layer->Size = System::Drawing::Size(193, 264);
+			this->lview_layer->TabIndex = 2;
 			this->lview_layer->UseCompatibleStateImageBehavior = false;
 			this->lview_layer->View = System::Windows::Forms::View::Details;
 			this->lview_layer->ItemChecked += gcnew System::Windows::Forms::ItemCheckedEventHandler(this, &MyForm::lview_layer_ItemChecked);
-			this->lview_layer->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::lview_layer_SelectedIndexChanged);
+			this->lview_layer->ItemSelectionChanged += gcnew System::Windows::Forms::ListViewItemSelectionChangedEventHandler(this, &MyForm::lview_layer_ItemSelectionChanged);
 			// 
 			// col_enable
 			// 
@@ -345,6 +414,16 @@ namespace NTNUEEPR_WPF {
 			this->msitem_view->Size = System::Drawing::Size(46, 20);
 			this->msitem_view->Text = L"View";
 			// 
+			// process1
+			// 
+			this->process1->StartInfo->Domain = L"";
+			this->process1->StartInfo->LoadUserProfile = false;
+			this->process1->StartInfo->Password = nullptr;
+			this->process1->StartInfo->StandardErrorEncoding = nullptr;
+			this->process1->StartInfo->StandardOutputEncoding = nullptr;
+			this->process1->StartInfo->UserName = L"";
+			this->process1->SynchronizingObject = this;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 12);
@@ -358,8 +437,8 @@ namespace NTNUEEPR_WPF {
 			this->ResizeEnd += gcnew System::EventHandler(this, &MyForm::MyForm_Resize_End);
 			this->Resize += gcnew System::EventHandler(this, &MyForm::MyForm_Resize);
 			this->spC_main->Panel1->ResumeLayout(false);
+			this->spC_main->Panel1->PerformLayout();
 			this->spC_main->Panel2->ResumeLayout(false);
-			this->spC_main->Panel2->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->spC_main))->EndInit();
 			this->spC_main->ResumeLayout(false);
 			this->split_compare->Panel1->ResumeLayout(false);
@@ -369,6 +448,12 @@ namespace NTNUEEPR_WPF {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbox_display))->EndInit();
+			this->spC_rightMenu->Panel1->ResumeLayout(false);
+			this->spC_rightMenu->Panel2->ResumeLayout(false);
+			this->spC_rightMenu->Panel2->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->spC_rightMenu))->EndInit();
+			this->spC_rightMenu->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbox_colorhistogram))->EndInit();
 			this->tstrip_layer->ResumeLayout(false);
 			this->tstrip_layer->PerformLayout();
 			this->menuStrip1->ResumeLayout(false);
@@ -393,6 +478,7 @@ namespace NTNUEEPR_WPF {
 			 void RemoveFilter();
 			 void PushFilter();
 			 void PullFilter();
+			 void OffsetFilter(int offset);
 
 			 MyImageData^ ApplyLayer(MyImageData^ orgin);
 
@@ -440,10 +526,13 @@ namespace NTNUEEPR_WPF {
 	private: System::Void ViewItem_Click(System::Object^  sender, System::EventArgs^  e);
 
 	private: System::Void lview_layer_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+		
 	}
 
 	private: System::Void lview_layer_ItemChecked(System::Object^  sender, System::Windows::Forms::ItemCheckedEventArgs^  e);
+	private: System::Void lview_layer_ItemSelectionChanged(System::Object^  sender, System::Windows::Forms::ListViewItemSelectionChangedEventArgs^  e);
 #pragma endregion
+
 
 
 

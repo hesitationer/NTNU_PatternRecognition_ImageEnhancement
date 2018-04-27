@@ -20,14 +20,13 @@ void Main(array<String^>^ args)
 
 System::Void NTNUEEPR_WPF::MyForm::MyForm_Resize(System::Object ^ sender, System::EventArgs ^ e)
 {
-	if(spC_main->SplitterDistance >= 200)
-		spC_main->SplitterDistance = spC_main->Width - 200;
+	
 }
 
 System::Void NTNUEEPR_WPF::MyForm::MyForm_Resize_End(System::Object ^ sender, System::EventArgs ^ e)
 {
-	if(mainImageName!=nullptr)
-		ShowMainImageByName(mainImageName);
+	/*if(mainImageName!=nullptr)
+		ShowMainImageByName(mainImageName);*/
 }
 
 void NTNUEEPR_WPF::MyForm::Setup()
@@ -35,9 +34,12 @@ void NTNUEEPR_WPF::MyForm::Setup()
 	btn_addlayer->AllowDrop = true;
 	btn_addlayer->DropDownItems->AddRange(
 		gcnew cli::array<
-		System::Windows::Forms::ToolStripItem^  >(2) {
+		System::Windows::Forms::ToolStripItem^  >(5) {
 		CreateNewLayerType(gcnew LayerHistogramEqualization()),
-			CreateNewLayerType(gcnew LayerMedianFilter() )
+			CreateNewLayerType(gcnew LayerMedianFilter()),
+			CreateNewLayerType(gcnew LayerColorAdjustmentFilter()),
+			CreateNewLayerType(gcnew LayerInverse()),
+			CreateNewLayerType(gcnew LayerContrastBalance())
 	});
 }
 
@@ -61,7 +63,7 @@ void NTNUEEPR_WPF::MyForm::LoadImageByFolder()
 		!String::IsNullOrWhiteSpace(browser.SelectedPath))
 	{
 		auto fileNames = Directory::GetFiles(browser.SelectedPath);
-		if (fileNames->Length > 0)
+		if (fileNames->Length > 0 && pbox_display->Image == nullptr)
 			ShowMainImageByName(fileNames[0]);
 		for each (String^ name in fileNames)
 		{
@@ -84,17 +86,50 @@ void NTNUEEPR_WPF::MyForm::AddFilter(int index)
 
 void NTNUEEPR_WPF::MyForm::RemoveFilter()
 {
-	throw gcnew System::NotImplementedException();
+	if (index_selected_layer < 0)
+		return;
+	lview_layer->Items->RemoveAt(index_selected_layer);
+	myFactLayers->RemoveAt(index_selected_layer);
+	index_selected_layer = -1;
 }
 
 void NTNUEEPR_WPF::MyForm::PushFilter()
 {
-	throw gcnew System::NotImplementedException();
+	OffsetFilter(1);
 }
 
 void NTNUEEPR_WPF::MyForm::PullFilter()
 {
-	throw gcnew System::NotImplementedException();
+	OffsetFilter(-1);
+}
+
+void NTNUEEPR_WPF::MyForm::OffsetFilter(int offset)
+{
+	int index_origin = index_selected_layer;
+	if (index_origin < 0)return;
+
+	int index_new = index_origin + offset;
+	if (index_new >= myFactLayers->Count) {
+		if (index_origin == myFactLayers->Count - 1) {
+			return;
+		}
+		index_new = myFactLayers->Count - 1;
+	}
+	else if (index_new < 0) {
+		if (index_origin == 0)
+			return;
+		index_new = 0;
+	}
+
+	auto origin_ui_layer = lview_layer->Items[index_origin];
+	auto origin_data_layer = myFactLayers[index_origin];
+
+	RemoveFilter();
+
+	lview_layer->Items->Insert(index_origin + offset, origin_ui_layer);
+	myFactLayers->Insert(index_origin + offset, origin_data_layer);
+
+	ShowMainImageByName(mainImageName);
 }
 
 void NTNUEEPR_WPF::MyForm::ShowMainImageByName(String^ name)
@@ -115,32 +150,25 @@ void NTNUEEPR_WPF::MyForm::ShowMainImageByName(String^ name)
 	int img_width = myImg->GetWidth();
 	int img_height = myImg->GetHeight();
 
-	//calculate photo scale
-
-	float scale = 1, width_scale = 1;
-
-	if (img_height > container_height)
-		scale = (float)container_height / (float)img_height;
-	if (img_width > container_width)
-		width_scale = (float)container_width / (float)img_width;
-	if (scale > width_scale)
-		scale = width_scale;
-
-	//draw pixel
-	Bitmap^ bitmap = gcnew Bitmap(name);
+	////draw pixel
+	Bitmap^ bitmap = gcnew Bitmap(img_width, img_height, Drawing::Imaging::PixelFormat::Format32bppRgb);
 	for(int index_w=0;index_w<img_width;index_w++)
 		for (int index_h = 0; index_h < img_height; index_h++) {
-			int index_face_w = (int)((float)index_w * scale);
-			int index_face_h = (int)((float)index_h * scale);
-			bitmap->SetPixel(index_face_w, index_face_h, Color::FromArgb
+			bitmap->SetPixel(index_w, index_h, Color::FromArgb
 				(1, myImg->GetPixels(MyImageData::COLOR::R)[index_w][index_h],
 					myImg->GetPixels(MyImageData::COLOR::G)[index_w][index_h],
 					myImg->GetPixels(MyImageData::COLOR::B)[index_w][index_h]));
-		}
+	}
 
 	//display
 	pbox_display->Image = bitmap;
 	pbox_display->Refresh();
+
+	this->Width = pbox_display->Width + 
+			spC_main->SplitterWidth + 200;
+	this->Height = pbox_display->Height +
+			menuStrip1->Height + 50;
+		spC_main->SplitterDistance = spC_main->Width - 200;
 }
 
 NTNUEEPR_WPF::MyImageData ^ NTNUEEPR_WPF::MyForm::CalculateModifyImage(String ^ name)
@@ -170,6 +198,7 @@ void NTNUEEPR_WPF::MyForm::AddImageToMenu(String ^ name)
 	items[length]->Click += gcnew System::EventHandler
 		(this, &MyForm::ViewItem_Click);
 }
+
 
 NTNUEEPR_WPF::MyImageData^ NTNUEEPR_WPF::MyForm::CreateOrGetImage(String ^ name)
 {
@@ -237,5 +266,14 @@ System::Void NTNUEEPR_WPF::MyForm::lview_layer_ItemChecked(System::Object ^ send
 	myFactLayers[index]->isEnable = e->Item->Checked;
 	ShowMainImageByName(mainImageName);
 }
+
+System::Void NTNUEEPR_WPF::MyForm::lview_layer_ItemSelectionChanged(System::Object ^ sender, System::Windows::Forms::ListViewItemSelectionChangedEventArgs ^ e)
+{
+	if (e->IsSelected)
+	{
+		index_selected_layer = (e->Item->Index);
+	}
+}
+
 
 

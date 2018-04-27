@@ -51,17 +51,11 @@
     <ClCompile Include="MyImage.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="ImageLayer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MyFilter.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
     <ClCompile Include="FilterToLayer.cpp">
       <Filter>Source Files\UICoreAdapter</Filter>
-    </ClCompile>
-    <ClCompile Include="MyFilterHistogramEqualization.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LayerHistogramEqualization.cpp">
       <Filter>Source Files\UICoreAdapter</Filter>
@@ -71,6 +65,27 @@
     </ClCompile>
     <ClCompile Include="LayerMedianFilter.cpp">
       <Filter>Source Files\UICoreAdapter</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorAdjustmentFilter.h">
+      <Filter>Header Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="LayerColorAbjustment.cpp">
+      <Filter>Source Files\UICoreAdapter</Filter>
+    </ClCompile>
+    <ClCompile Include="LayerContractBalance.cpp">
+      <Filter>Source Files\UICoreAdapter</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLayer.cpp">
+      <Filter>Source Files\UICoreAdapter</Filter>
+    </ClCompile>
+    <ClCompile Include="LayerInverse.cpp">
+      <Filter>Source Files\UICoreAdapter</Filter>
+    </ClCompile>
+    <ClCompile Include="MyFilterHistogramEqualization.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="HistogramForm.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -104,10 +119,36 @@
     <ClInclude Include="LayerMedianFilter.h">
       <Filter>Header Files\UICoreAdapter</Filter>
     </ClInclude>
+    <ClInclude Include="LayerColorAbjustment.h">
+      <Filter>Header Files\UICoreAdapter</Filter>
+    </ClInclude>
+    <ClInclude Include="InverseFilter.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="LayerInverse.h">
+      <Filter>Header Files\UICoreAdapter</Filter>
+    </ClInclude>
+    <ClInclude Include="ContrastBalanceFilter.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="LayerContractBalance.h">
+      <Filter>Header Files\UICoreAdapter</Filter>
+    </ClInclude>
+    <ClInclude Include="HistogramForm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="IniImg.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ImageLayer.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForm.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

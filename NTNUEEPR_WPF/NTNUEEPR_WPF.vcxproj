@@ -136,9 +136,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ColorAdjustmentFilter.h" />
     <ClCompile Include="FilterToLayer.cpp" />
+    <ClCompile Include="HistogramForm.cpp" />
     <ClCompile Include="ImageLayer.cpp" />
+    <ClCompile Include="LayerColorAbjustment.cpp" />
+    <ClCompile Include="LayerContractBalance.cpp" />
     <ClCompile Include="LayerHistogramEqualization.cpp" />
+    <ClCompile Include="LayerInverse.cpp" />
     <ClCompile Include="LayerMedianFilter.cpp" />
     <ClCompile Include="MedianFilter.cpp" />
     <ClCompile Include="MyFilter.cpp" />
@@ -148,11 +153,19 @@
     <ClCompile Include="MyImageData.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ContrastBalanceFilter.h" />
     <ClInclude Include="FilterToLayer.h" />
+    <ClInclude Include="HistogramForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="ImageLayer.h">
       <FileType>CppControl</FileType>
     </ClInclude>
+    <ClInclude Include="InverseFilter.h" />
+    <ClInclude Include="LayerColorAbjustment.h" />
+    <ClInclude Include="LayerContractBalance.h" />
     <ClInclude Include="LayerHistogramEqualization.h" />
+    <ClInclude Include="LayerInverse.h" />
     <ClInclude Include="LayerMedianFilter.h" />
     <ClInclude Include="MedianFilter.h" />
     <ClInclude Include="MyFilter.h" />
