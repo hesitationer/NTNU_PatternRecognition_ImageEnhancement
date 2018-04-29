@@ -9,7 +9,8 @@ public:
 	enum COLOR {
 		R,
 		G,
-		B
+		B,
+		Gray
 	};
 
 	MyImage() {}
@@ -87,6 +88,66 @@ public:
 			}
 		}
 		return ptr_newPixels;
+	}
+
+	T*** Get3ColorPixels() {
+		T*** ptr_colors = new T**[3];
+		ptr_colors[0] = ptr_pixels_red;
+		ptr_colors[1] = ptr_pixels_green;
+		ptr_colors[2] = ptr_pixels_blue;
+		return ptr_colors;
+	}
+
+	T*** Get3ColorPixelsCopy() {
+		T*** ptr_colors = new T**[3];
+		ptr_colors[0] = GetPixelsCopy(COLOR::R);
+		ptr_colors[1] = GetPixelsCopy(COLOR::G);
+		ptr_colors[2] = GetPixelsCopy(COLOR::B);
+		return ptr_colors;
+	}
+
+	int* GetColorHistogram(COLOR type,int &max_number) {
+		T** ptr_color;
+		switch (type)
+		{
+		case COLOR::R:
+			ptr_color = ptr_pixels_red;
+			break;
+		case COLOR::G:
+			ptr_color = ptr_pixels_green;
+			break;
+		case COLOR::B:
+			ptr_color = ptr_pixels_blue;
+			break;
+		case Gray:
+			break;
+		default:
+			return nullptr;
+		}
+
+		int size = sizeof(T) * 256;
+		int* result = new int[size];
+		for (int index_result = 0;index_result<size;index_result++) {
+			result[index_result] = 0;
+		}
+		for (int index_w = 0; index_w < width; index_w++) {
+			for (int index_h = 0; index_h < height; index_h++) {
+				if(type!=COLOR::Gray)
+					result[ptr_color[index_w][index_h]]++;
+				else {
+					result[(
+						ptr_pixels_blue[index_w][index_h] +
+						ptr_pixels_green[index_w][index_h] +
+						ptr_pixels_red[index_w][index_h]
+						) / 3
+					] ++;
+				}
+			}
+		}
+	}
+
+	void DeleteHistogram(int* histogram) {
+		delete[] histogram;
 	}
 
 	static void DeletePixels(T** ptr_pixels, uint width, uint height)

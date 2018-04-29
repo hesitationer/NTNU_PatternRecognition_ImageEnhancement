@@ -1,5 +1,16 @@
-﻿  HistogramForm.cpp
-  MyForm.cpp
-  Generating Code...
+﻿  LayerDCTAndIDCT.cpp
+e:\rp\ntnueepr_wf\ntnueepr_wpf\DiscreteCosineTransformFilter.h(75): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  e:\rp\ntnueepr_wf\ntnueepr_wpf\DiscreteCosineTransformFilter.h(69): note: while compiling class template member function 'double **DiscreteCosineTransformFilter<NTNUEEPR_WPF::MyImageData::uchar>::DCT(T **,int,int)'
+          with
+          [
+              T=NTNUEEPR_WPF::MyImageData::uchar
+          ]
+  e:\rp\ntnueepr_wf\ntnueepr_wpf\DiscreteCosineTransformFilter.h(28): note: see reference to function template instantiation 'double **DiscreteCosineTransformFilter<NTNUEEPR_WPF::MyImageData::uchar>::DCT(T **,int,int)' being compiled
+          with
+          [
+              T=NTNUEEPR_WPF::MyImageData::uchar
+          ]
+  LayerDCTAndIDCT.cpp(8): note: see reference to class template instantiation 'DiscreteCosineTransformFilter<NTNUEEPR_WPF::MyImageData::uchar>' being compiled
+e:\rp\ntnueepr_wf\ntnueepr_wpf\DiscreteCosineTransformFilter.h(76): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   NTNUEEPR_WPF.vcxproj -> E:\RP\NTNUEEPR_WF\Debug\NTNUEEPR_WF.exe
   NTNUEEPR_WPF.vcxproj -> E:\RP\NTNUEEPR_WF\Debug\NTNUEEPR_WF.pdb (Full PDB)

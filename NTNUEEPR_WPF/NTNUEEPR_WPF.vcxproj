@@ -142,6 +142,7 @@
     <ClCompile Include="ImageLayer.cpp" />
     <ClCompile Include="LayerColorAbjustment.cpp" />
     <ClCompile Include="LayerContractBalance.cpp" />
+    <ClCompile Include="LayerDCTAndIDCT.cpp" />
     <ClCompile Include="LayerHistogramEqualization.cpp" />
     <ClCompile Include="LayerInverse.cpp" />
     <ClCompile Include="LayerMedianFilter.cpp" />
@@ -154,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContrastBalanceFilter.h" />
+    <ClInclude Include="DiscreteCosineTransformFilter.h" />
     <ClInclude Include="FilterToLayer.h" />
     <ClInclude Include="HistogramForm.h">
       <FileType>CppForm</FileType>
@@ -164,6 +166,7 @@
     <ClInclude Include="InverseFilter.h" />
     <ClInclude Include="LayerColorAbjustment.h" />
     <ClInclude Include="LayerContractBalance.h" />
+    <ClInclude Include="LayerDCTAndIDCT.h" />
     <ClInclude Include="LayerHistogramEqualization.h" />
     <ClInclude Include="LayerInverse.h" />
     <ClInclude Include="LayerMedianFilter.h" />
@@ -177,6 +180,9 @@
     <ClInclude Include="MyImageData.h" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="HistogramForm.resx">
+      <DependentUpon>HistogramForm.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImageLayer.resx">
       <DependentUpon>ImageLayer.h</DependentUpon>
     </EmbeddedResource>

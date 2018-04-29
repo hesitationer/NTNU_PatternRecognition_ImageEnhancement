@@ -87,6 +87,9 @@
     <ClCompile Include="HistogramForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LayerDCTAndIDCT.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyForm.h">
@@ -137,6 +140,12 @@
     <ClInclude Include="HistogramForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DiscreteCosineTransformFilter.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="LayerDCTAndIDCT.h">
+      <Filter>Header Files\UICoreAdapter</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="IniImg.jpg">
@@ -148,6 +157,9 @@
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="MyForm.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistogramForm.resx">
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
   </ItemGroup>

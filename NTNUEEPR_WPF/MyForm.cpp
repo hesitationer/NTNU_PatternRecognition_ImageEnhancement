@@ -34,12 +34,13 @@ void NTNUEEPR_WPF::MyForm::Setup()
 	btn_addlayer->AllowDrop = true;
 	btn_addlayer->DropDownItems->AddRange(
 		gcnew cli::array<
-		System::Windows::Forms::ToolStripItem^  >(5) {
+		System::Windows::Forms::ToolStripItem^  >(6) {
 		CreateNewLayerType(gcnew LayerHistogramEqualization()),
 			CreateNewLayerType(gcnew LayerMedianFilter()),
 			CreateNewLayerType(gcnew LayerColorAdjustmentFilter()),
 			CreateNewLayerType(gcnew LayerInverse()),
-			CreateNewLayerType(gcnew LayerContrastBalance())
+			CreateNewLayerType(gcnew LayerContrastBalance()),
+			CreateNewLayerType(gcnew LayerDCTAndIDCT())
 	});
 }
 

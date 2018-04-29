@@ -1,3 +1,4 @@
+  NTNUEEPR_WPF.HistogramForm.resources - Embedded, ContainedInManifestFile, 
   NTNUEEPR_WPF.ImageLayer.resources - Embedded, ContainedInManifestFile, 
   NTNUEEPR_WPF.MyForm.resources - Embedded, ContainedInManifestFile, 
 ImageRuntimeVersion: v4.0.30319
@@ -42,6 +43,8 @@ Class NTNUEEPR_WPF.FilterToLayer: AutoLayout, AnsiClass, Class, Public, Abstract
 Class NTNUEEPR_WPF.HistogramForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    SetHistogram(Int32*, Int32, Int32, PictureBox): PrivateScope, Public, HideBySig
 Class NTNUEEPR_WPF.ImageLayer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.ListViewItem
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -66,6 +69,13 @@ Class NTNUEEPR_WPF.LayerContrastBalance: AutoLayout, AnsiClass, Class, Public, B
   Methods:
     Execute(MyImageData): PrivateScope, Public, Virtual, HideBySig
 Struct ContractBalanceFilter<unsigned char>: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+Class NTNUEEPR_WPF.LayerDCTAndIDCT: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :NTNUEEPR_WPF.FilterToLayer
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    Execute(MyImageData): PrivateScope, Public, Virtual, HideBySig
+Struct DiscreteCosineTransformFilter<unsigned char>: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
   :System.ValueType
 Class NTNUEEPR_WPF.LayerHistogramEqualization: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :NTNUEEPR_WPF.FilterToLayer

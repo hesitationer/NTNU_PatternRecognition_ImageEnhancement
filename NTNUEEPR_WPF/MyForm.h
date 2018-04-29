@@ -8,6 +8,7 @@
 #include "LayerColorAbjustment.h"
 #include "LayerInverse.h"
 #include "LayerContractBalance.h"
+#include "LayerDCTAndIDCT.h"
 
 namespace NTNUEEPR_WPF {
 
