@@ -137,10 +137,13 @@ void NTNUEEPR_WPF::MyForm::ShowMainImageByName(String^ name)
 {
 	mainImageName = name;
 	MyImageData^ myOriginImg = CreateOrGetImage(name);
-	if (myOriginImg == nullptr)return;
+	if (myOriginImg == nullptr)
+		return;
+
 	myOriginImg = ApplyLayer(myOriginImg);
-	MyImageData::TYPE* myImg = myOriginImg->data;
-	if (myImg == nullptr)return;
+	MyImageData::TYPE* img_data = myOriginImg->data;
+	if (img_data == nullptr)
+		return;
 
 	int container_width = spC_main->Panel1->Width;
 	int container_height = spC_main->Panel1->Height;
@@ -148,20 +151,21 @@ void NTNUEEPR_WPF::MyForm::ShowMainImageByName(String^ name)
 	pbox_display->Width = container_width;
 	pbox_display->Height = container_height;
 
-	int img_width = myImg->GetWidth();
-	int img_height = myImg->GetHeight();
+	int img_width = img_data->GetWidth();
+	int img_height = img_data->GetHeight();
 
 	////draw pixel
-	Bitmap^ bitmap = gcnew Bitmap(img_width, img_height, Drawing::Imaging::PixelFormat::Format32bppRgb);
+	Bitmap^ bitmap = gcnew Bitmap(img_width, img_height, Drawing::Imaging::PixelFormat::Format24bppRgb);
 	for(int index_w=0;index_w<img_width;index_w++)
 		for (int index_h = 0; index_h < img_height; index_h++) {
 			bitmap->SetPixel(index_w, index_h, Color::FromArgb
-				(1, myImg->GetPixels(MyImageData::COLOR::R)[index_w][index_h],
-					myImg->GetPixels(MyImageData::COLOR::G)[index_w][index_h],
-					myImg->GetPixels(MyImageData::COLOR::B)[index_w][index_h]));
+				(1, img_data->GetPixels(MyImageData::COLOR::R)[index_w][index_h],
+					img_data->GetPixels(MyImageData::COLOR::G)[index_w][index_h],
+					img_data->GetPixels(MyImageData::COLOR::B)[index_w][index_h]));
 	}
 
 	//display
+	delete pbox_display->Image;
 	pbox_display->Image = bitmap;
 	pbox_display->Refresh();
 
