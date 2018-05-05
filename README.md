@@ -5,7 +5,7 @@
 ### 語言:        C++                                    </br>
 ### 專案類型:    Windows Form (CLR)                      </br>
 ### 使用方式:    
-1. 直接下載Data資料夾
+1. 直接下載D資料夾
 2. 打開NTNUEEPR_WF.exe
 2. 左上角選單選項:LoadImage -> Folder
 4. 選取同目錄底下的Data
